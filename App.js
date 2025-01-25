@@ -18,11 +18,32 @@ import ReactDOM from "react-dom/client";
 
 
 // JSX
-const jsxHeading =( <h1 id ="heading">
+const jsxHeading = ( 
+ <h1 id ="heading">
     Namaste React Using JSX
-    </h1>);
+    </h1>
+);
+
+//React Functional Component
+//Use capital first letter for functional component
+
+const Title = () =>(
+    <h1 className="head" tabIndex="5">
+        Namaste React using Title FC.
+    </h1>
+)
+const HeadingComponent = () => (
+    <div id="container">
+    
+    <Title/>
+     {/* {jsxHeading} */}
+
+     <h1 className="heading">Namaste React Functional Component</h1>
+    </div>
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(jsxHeading);
+// root.render(jsxHeading);
 
+root.render(<HeadingComponent/>)
