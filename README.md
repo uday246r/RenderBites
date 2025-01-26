@@ -28,3 +28,8 @@ import component from "path";
 
 export const Component;
 import {component} from "path";
+
+# React Hooks
+(Normal JS utility function)
+-useState() - Superpowerful state  variables in react
+-useEffect()
