@@ -1,7 +1,7 @@
 import {CDN_URL} from "../utils/constants";
 
 const RestaurantCard = (props) =>{            //here props is JS object here, as props is JS object so we can use it using {}
-    // console.log(props);
+    console.log(props);
     const { resData } = props;
     
     const {
@@ -11,7 +11,7 @@ const RestaurantCard = (props) =>{            //here props is JS object here, as
         cuisines,
         costForTwo,
         sla: {deliveryTime} = {}
-    } = resData?.card?.card?.restaurant?.info;
+    } = resData?.info;
     return(
         <div className="res-card" style={{ backgroundColor: "#f0f0f0"}}>
             <img className="res-logo"
