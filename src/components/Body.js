@@ -1,11 +1,13 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData"
 import { useEffect, useState } from "react";
-import Shimmer from "./Shimmer"
+import Shimmer from "./Shimmer";
 
 const Body = () => {
 
     const [listOfRestaurants, setlistOfRestaurants] = useState([]);
+    const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+    const [searchText, setsearchText] = useState("");
 
     useEffect(()=>{
         fetchData();
@@ -19,7 +21,7 @@ const Body = () => {
         const json = await data.json();
         console.log(json);
         setlistOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-     
+        setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
     
@@ -29,6 +31,22 @@ const Body = () => {
     ) : (
         <div className="body">
             <div className="filter">
+                <div className="search">
+                    <input 
+                    type="text" 
+                    className="search-box" 
+                    value={searchText} 
+                    onChange={(e)=>{
+                        setsearchText(e.target.value);
+                    }} 
+                    />
+                    <button onClick={()=>{
+                       const filteredRestaurant = listOfRestaurants.filter(
+                        (res)=>res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
+                    );
+                    setFilteredRestaurant(filteredRestaurant);
+                    }}>Search</button>
+                </div>
                 <button 
                   className="filter-btn"
                   onClick={()=>{
@@ -39,7 +57,7 @@ const Body = () => {
                         }
                       );
                       
-                      setlistOfRestaurants(filteredResList);
+                      setFilteredRestaurant(filteredResList);
 
 
                    }}
@@ -49,7 +67,7 @@ const Body = () => {
                 </div>
             <div className="res-container">
                 {
-                  listOfRestaurants.map(restaurant => (
+                  filteredRestaurant.map(restaurant => (
                   <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
                 ))}
             </div>
