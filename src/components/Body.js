@@ -29,7 +29,7 @@ const Body = () => {
                   onClick={()=>{
                     const filteredResList = listOfRestaurants.filter(
                         (res) => {
-                          const avgRating = res?.card?.card?.restaurant?.info?.avgRating < 4.6;
+                          const avgRating = res?.info?.avgRating > 4.6;
                           return avgRating ;
                         }
                       );
