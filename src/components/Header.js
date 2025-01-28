@@ -42,4 +42,3 @@ export default Header;
 
 // we can do default and named export and import simultaneously for same component.
 
-// 1:10
