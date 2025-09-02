@@ -1,15 +1,18 @@
+import { useState } from "react";
 import ItemList from "./itemList";
 
-const RestaurantCategory = ({data})=> {
-    console.log(data);
+const RestaurantCategory = ({ data, showItems, setShowIndex })=> {
+    const handleClick = () => {
+        setShowIndex();
+    }
     return <div>
         {/* {Header} */}
         <div className="resCategoryData">
-            <div className="resCategoryHeader">
+            <div className="resCategoryHeader" onClick={handleClick}>
             <span className="resCategoryDataTitle">{data.title} ({data.itemCards.length})</span>
             <span>⬇️</span>
             </div>
-             <ItemList items={data.itemCards} />
+            {showItems && <ItemList items={data.itemCards} />}
         </div>
         {/* Accordian Body */}
 

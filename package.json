@@ -28,14 +28,16 @@
     "@parcel/config-default": "^2.13.3",
     "@parcel/transformer-babel": "^2.13.3",
     "@parcel/transformer-js": "^2.13.3",
-    "parcel": "^2.13.3",
+    "parcel": "^2.15.4",
     "process": "^0.11.10"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.8",
+    "dom": "^0.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.3",
+    "react-router": "^6.30.1",
+    "react-router-dom": "^6.30.1",
     "tailwindcss": "^4.0.8"
   },
   "browserslist": [

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { CDN_URL } from "../utils/constants"
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 // import { MENU_API } from "../utils/constants"
 
@@ -13,6 +14,8 @@ const RestaurantMenu = () =>{
     
     const { resId } = useParams();
     const resInfo = useRestaurantMenu(resId);
+
+    const [showIndex, setShowIndex] = useState([]);
     
     // useEffect(() => {
     //     fetchMenu();
@@ -26,7 +29,7 @@ const RestaurantMenu = () =>{
 
     if(resInfo===null) return <Shimmer/>;
     
-   const {name,cloudinaryImageId, cuisines, costForTwo} = resInfo?.cards[2]?.card?.card?.info ;
+   const {name,cloudinaryImageId, cuisines, costForTwo, id} = resInfo?.cards[2]?.card?.card?.info ;
    const { itemCards } = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card ;
 //    console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
 
@@ -43,14 +46,23 @@ const RestaurantMenu = () =>{
              />
                 </div> */}
             <p className="menuRestaurantData">
-                {cuisines.join(", ")} - {costForTwo}
+                {cuisines.join(", ")} - Rs. {costForTwo}
                 </p>
 
                 {/* Categories accordian */}
 
                 {
-                    categories.map((category)=>(
-                        <RestaurantCategory key={category?.card?.card?.itemCards?.card?.info?.id} data={category?.card?.card}/>
+                    categories.map((category, index)=>(
+                        // controlled component
+                        <RestaurantCategory
+                          key={category?.card?.card?.title}
+                          data={category?.card?.card}
+                          showItems={showIndex.includes(index)}
+                          setShowIndex={() =>{
+                          showIndex.includes(index) ? setShowIndex(showIndex.filter(i=>i!==index))
+                          : setShowIndex([...showIndex,index]);
+                          } }
+                         />
                     ))
                 }
 
