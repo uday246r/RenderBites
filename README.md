@@ -218,13 +218,3 @@ React | JavaScript | MERN Stack
 Passionate about building scalable frontend applications
 
 ---
-
-## ⭐ Support
-
-If you like this project:
-
-* ⭐ Star the repository
-* 🍴 Fork it
-* 🚀 Build & learn more
-
-Just tell me 👍
